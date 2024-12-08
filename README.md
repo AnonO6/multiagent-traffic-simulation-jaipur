@@ -6,6 +6,10 @@ This project simulates Jaipur's traffic system using a multi-agent approach, imp
 
 ---
 
+https://github.com/user-attachments/assets/21adfb13-0a7a-4d41-81de-473d45069aec
+
+---
+
 ## Features
 
 1. **Agent Types**
