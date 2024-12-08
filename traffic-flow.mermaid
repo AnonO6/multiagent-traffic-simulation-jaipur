@@ -1,0 +1,60 @@
+flowchart TD
+    %% Style definitions
+    classDef setupClass fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef agentClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef simulationClass fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef intelligenceClass fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef propertyClass fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef flowClass fill:#ffebee,stroke:#b71c1c,stroke-width:2px
+
+    subgraph Setup["🚦 Setup Phase"]
+        A[setup] --> B[setup-globals]
+        A --> C[setup-patches]
+        A --> D[create-turtles]
+        C --> C1[setup-intersections]
+        C --> C2[setup-jaipur-labels]
+        D --> D1[setup-cars]
+        D --> D2[initialize-agent-properties]
+        D --> D3[set-car-color]
+    end
+
+    subgraph Agents["🚗 Agent Types"]
+        E1[Vehicles/Turtles] -->|Properties| E1P[speed<br/>wait-time<br/>patience<br/>local-knowledge<br/>vehicle-type<br/>route-preference<br/>has-emergency?]
+        E2[Intersections/Patches] -->|Properties| E2P[intersection?<br/>green-light-up?<br/>congestion-level<br/>historical-data<br/>location-name]
+    end
+
+    subgraph Simulation["⚙️ Main Simulation Loop"]
+        F[go] --> G[update-current]
+        F --> H[manage-traffic-flow]
+        F --> I[set-signals]
+        F --> J[move-vehicles]
+        J --> K[set-car-speed]
+        J --> L[record-data]
+        J --> M[set-car-color]
+        H --> N[optimize-signal-timing]
+    end
+
+    subgraph Intelligence["🧠 Intelligent Behaviors"]
+        O[Emergency Vehicle Handler] --> P[Priority Signal Changes]
+        Q[Congestion Management] --> R[Dynamic Signal Timing]
+        S[Route Adaptation] --> T[Alternative Path Finding]
+    end
+
+    Setup --> Agents
+    Agents --> Simulation
+    Simulation --> Intelligence
+    Intelligence -->|Feedback| Simulation
+
+    %% Apply styles
+    class A,B,C,D,C1,C2,D1,D2,D3 setupClass
+    class E1,E2 agentClass
+    class E1P,E2P propertyClass
+    class F,G,H,I,J,K,L,M,N simulationClass
+    class O,P,Q,R,S,T intelligenceClass
+    class Setup,Agents,Simulation,Intelligence flowClass
+
+    %% Add click interactivity
+    click A "setup" "Initializes the simulation"
+    click E1 "Vehicles" "Mobile agents in the simulation"
+    click F "go" "Main simulation loop"
+    click O "Emergency" "Handles emergency vehicle priority"
